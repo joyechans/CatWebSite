@@ -4,6 +4,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 
 <html>
 <head>
@@ -83,14 +84,14 @@
                 <!--  카테고리  -->
                 <div class="catagories-menu">
                       <form id="selectform" action="pr-kind" method="POST">
-						<input type="radio" name="kind" value="all" id="kindCategory" <c:if test="${param.kind eq 'all'}"></c:if>/><label for="kindCategory">ALL</label> <br><br>                 
-						<input type="radio" name="kind" value="사료" id="kindCategory2" <c:if test="${param.kind eq '사료'}"></c:if>/><label for="kindCategory2">Food</label><br><br>
-						<input type="radio" name="kind" value="하우스" id="kindCategory3" <c:if test="${param.kind eq '하우스'}"></c:if>/><label for="kindCategory3">House</label><br><br>						
-						<input type="radio" name="kind" value="미용" id="kindCategory4" <c:if test="${param.kind eq '미용'}"></c:if>/><label for="kindCategory4">Beauty</label><br><br>  						
-						<input type="radio" name="kind" value="목욕" id="kindCategory5" <c:if test="${param.kind eq '목욕'}"></c:if>/><label for="kindCategory5">Bath</label><br><br>     
-						<input type="radio" name="kind" value="장난감" id="kindCategory6" <c:if test="${param.kind eq '장난감'}"></c:if>/><label for="kindCategory6">Toy</label><br><br>
-						<input type="radio" name="kind" value="모래" id="kindCategory7" <c:if test="${param.kind eq '모래'}"></c:if>/><label for="kindCategory7">Sand</label><br><br>  	
-						<input type="radio" name="kind" value="캣타워" id="kindCategory8" <c:if test="${param.kind eq '캣타워'}"></c:if>/><label for="kindCategory8">Tower</label><br><br>   			 				                     
+						<input type="radio" name="kind" value="all" id="kindCategory" <c:if test="${param.kind eq 'all'}"></c:if>/>ALL<br><br>                 
+						<input type="radio" name="kind" value="사료" id="kindCategory2" <c:if test="${param.kind eq '사료'}"></c:if>/>Food<br><br>
+						<input type="radio" name="kind" value="하우스" id="kindCategory3" <c:if test="${param.kind eq '하우스'}"></c:if>/>House<br><br>						
+						<input type="radio" name="kind" value="미용" id="kindCategory4" <c:if test="${param.kind eq '미용'}"></c:if>/>Beauty<br><br>  						
+						<input type="radio" name="kind" value="목욕" id="kindCategory5" <c:if test="${param.kind eq '목욕'}"></c:if>/>Bath<br><br>     
+						<input type="radio" name="kind" value="장난감" id="kindCategory6" <c:if test="${param.kind eq '장난감'}"></c:if>/>Toy<br><br>
+						<input type="radio" name="kind" value="모래" id="kindCategory7" <c:if test="${param.kind eq '모래'}"></c:if>/>Sand<br><br>  	
+						<input type="radio" name="kind" value="캣타워" id="kindCategory8" <c:if test="${param.kind eq '캣타워'}"></c:if>/>Tower<br><br>   			 				                     
                      </form> 
                 </div>
             </div>
@@ -134,7 +135,7 @@
                              		<a href="pr-detail?productNo=${ product.productNo }" data-toggle="tooltip" data-placement="right" title="용품 둘러보기">  
                                    		<p class="product-price">${ product.name }</p></a>
                                        <h6>${ product.kind }</h6>                                   		
-                                       <h6>₩${ product.price }</h6>
+                                       <h6>￦<fmt:formatNumber value="${ product.price }" pattern="#,###" /></h6>
                                        
                                </div>
                                <!-- Ratings & Cart -->

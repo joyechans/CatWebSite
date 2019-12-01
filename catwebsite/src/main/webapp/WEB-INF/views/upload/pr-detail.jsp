@@ -3,6 +3,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -83,39 +84,13 @@
                 <div class="row">
                     <div class="col-12 col-lg-7">
                         <div class="single_product_thumb">
-                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-<%--                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(/catopia/resources/upload-files/${ file.savedFileName });">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(/catopia/resources/img/product-img/product1.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(/catopia/resources/img/product-img/product2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(/catopia/resources/img/product-img/product2.jpg);">
-                                    </li>
-                                </ol> --%>
-                                
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">                                
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <a class="gallery_img" href="/catopia/resources/upload-files/${ file.savedFileName }">
-                                            <img class="d-block w-100" src="/catopia/resources/upload-files/${ file.savedFileName }" alt="First slide" style="height:700;width:750">
+                                            <img class="d-block w-100" src="/catopia/resources/upload-files/${ file.savedFileName }" alt="First slide" style="height:700;width:700">
                                         </a>
                                     </div>
-                                 <!--    <div class="carousel-item">
-                                        <a class="gallery_img" href="/catopia/resources/img/product-img/product2.jpg">
-                                            <img class="d-block w-100" src="/catopia/resources/img/product-img/product2.jpg" alt="Second slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="/catopia/resources/img/product-img/product1.jpg">
-                                            <img class="d-block w-100" src="/catopia/resources/img/product-img/product1.jpg" alt="Third slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="/catopia/resources/img/product-img/product1.jpg">
-                                            <img class="d-block w-100" src="/catopia/resources/img/product-img/product1.jpg" alt="Fourth slide">
-                                        </a>
-                                    </div> -->
                                 </div>                            
                             </div>
                         </div>
@@ -129,7 +104,7 @@
                                 <div class="line"></div>
                                 <p class="product-price">${ product.name }</p>
                                 <a href="product-details.html">
-                                    <h6>₩${ product.price }</h6>
+                                   <h6>￦<fmt:formatNumber value="${ product.price }" pattern="#,###" /></h6>
                                 </a>
                                  <h3>${ product.kind }</h3>
                                    <div class="review">
@@ -154,48 +129,23 @@
 											class="btn btn-outline-secondary" value="삭제" />
 									</c:if>				
 									<input type="button" id="cancel_button"
-										class="btn btn-outline-secondary" value="목록보기" /><br>						
-									<script type="text/javascript">																									
-		        		window.addEventListener('load',function(event){
-						var btnCancel =document.querySelector('#cancel_button');
-		        		btnCancel.addEventListener('click', function(event) {
-		        			location.href="/catopia/pr-upload/pr-list";
-		        		});
-		        		
-		        		var btnDelete = document.querySelector('#delete_button');
-		        		btnDelete.addEventListener('click', function(event){
-		        			var ok = confirm("${product.productNo}번 자료를 삭제할까요?");
-		        			if(ok){
-		        			location.href="/catopia/pr-upload/delete/${ product.productNo }";
-		        			}
-		        		});
-		        		
-		        		var btnUpdate = document.querySelector('#update_button');
-		        		btnUpdate.addEventListener('click', function(event){
-		        			location.href="/catopia/pr-upload/pr-update/${ product.productNo }";
-		        		});
-		        		
-		        	});
-		        	</script>
-		        	<form name="form1" method="post" action="/catopia/cart-upload/insertcart">
-		        	<input type="hidden" name="memberId" value="${loginuser.memberId }">
-					<input type="hidden" name="productNo" value="${product.productNo }">
-		        	<select name="amount">
-		        	<c:forEach begin="1" end="10" var="i">
-		        	<option value="${i}">${i}</option>
-		        	</c:forEach>
-		        	<br>
-		        	</select>&nbsp;개&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		        	<input type="submit" class="btn btn-outline-secondary" value="장바구니">    	
-		        	</form>
-								</div>
-                            </div>
+										class="btn btn-outline-secondary" value="목록보기" /><br><br><br>			
+										</div>			
 
+						        	<form name="form1" method="post" action="/catopia/cart-upload/insertcart">
+						        	<input type="hidden" name="memberId" value="${loginuser.memberId }">
+									<input type="hidden" name="productNo" value="${product.productNo }">
+						        	<select name="amount">
+						        	<c:forEach begin="1" end="10" var="i">
+						        	<option value="${i}">${i}</option>
+						        	</c:forEach>
+						        	</select>&nbsp;개&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						        	<input type="submit" class="btn btn-outline-secondary" value="장바구니">    	
+						        	</form>								
+				                </div>
                             <div class="short_overview my-5">
                                 <p>${ product.content }</p>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -207,6 +157,28 @@
 
     <!-- ##### Footer Area Start ##### -->
     <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+     <script type="text/javascript">																									
+		        		window.addEventListener('load',function(event){
+						var btnCancel =document.querySelector('#cancel_button');
+		        		btnCancel.addEventListener('click', function(event) {
+		        			location.href="/catopia/pr-upload/pr-list";
+		        		});
+		        		
+		        		var btnDelete = document.querySelector('#delete_button');
+		        		btnDelete.addEventListener('click', function(event){
+		        			var ok = confirm("${product.productNo} 용품을 삭제할까요?");
+		        			if(ok){
+		        			location.href="/catopia/pr-upload/delete/${ product.productNo }";
+		        			}
+		        		});
+		        		
+		        		var btnUpdate = document.querySelector('#update_button');
+		        		btnUpdate.addEventListener('click', function(event){
+		        			location.href="/catopia/pr-upload/pr-update/${ product.productNo }";
+		        		});
+		        		
+		        	});
+	</script>
 
 </body>
 

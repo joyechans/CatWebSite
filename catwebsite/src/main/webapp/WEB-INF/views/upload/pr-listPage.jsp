@@ -4,6 +4,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 
 <html>
 <head>
@@ -133,8 +134,8 @@
                                    <div class="line"></div>
                              		<a href="pr-detail?productNo=${ product.productNo }" data-toggle="tooltip" data-placement="right" title="용품 둘러보기">  
                                    		<p class="product-price">${ product.name }</p></a>
-                                       <h6>${ product.kind }</h6>                                   		
-                                       <h6>₩${ product.price }</h6>
+                                       <h4>${ product.kind }</h4>                                   		
+                                       <h4>￦<fmt:formatNumber value="${ product.price }" pattern="#,###" /></h4>
                                        
                                </div>
                                <!-- Ratings & Cart -->

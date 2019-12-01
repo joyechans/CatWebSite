@@ -59,7 +59,7 @@
             
 	<div id="pageContainer">
 	
-		<h3 style="text-align:center;padding-top:50px">용품구매</h3>
+		<h3 style="text-align:center;padding-top:50px">용품 정보수정</h3>
 		
 		<div class="container" style="margin-top:20px; text-align:center; width: 60%;">	        
 		        <form action="/catopia/pr-upload/pr-update"
@@ -98,11 +98,7 @@
 		                <td colspan="2" style="text-align:left">
 		              	<input  type="hidden" name="uploader" value="${loginuser.memberId}" >
 		                	${ loginuser.memberId}
-		                	
-		                	<%-- 히든속성이 아님
-		                	<input type="hidden" name="uploader" 
-		                	value="<%= member.getMemberId() %>" readonly="readonly">
-		                	--%>
+
 		                	
 		                </td>
 		            </tr>
